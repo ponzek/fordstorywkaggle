@@ -1,0 +1,50 @@
+[
+  {
+    "step": "Raw Reese Craigslist archive",
+    "rows_after": 295451,
+    "why": "All rows in vehicles.csv",
+    "rows_removed": 0
+  },
+  {
+    "step": "Five target compact SUVs (excl. Rogue Sport/Hybrid/EV)",
+    "rows_after": 12967,
+    "why": "Keep Escape, Equinox, CR-V, RAV4, Rogue; drop Rogue Sport & hybrid/electric trims or fuel",
+    "rows_removed": 282484
+  },
+  {
+    "step": "Model years 2016\u20132019",
+    "rows_after": 3901,
+    "why": "Comparable 4-year model window",
+    "rows_removed": 9066
+  },
+  {
+    "step": "Odometer 0\u2013125,000 mi",
+    "rows_after": 2592,
+    "why": "Remove missing/extreme odometer readings",
+    "rows_removed": 1309
+  },
+  {
+    "step": "Known U.S. state & valid posting date",
+    "rows_after": 2592,
+    "why": "Required for Census region grouping and timeline",
+    "rows_removed": 0
+  },
+  {
+    "step": "Price $2,000\u2013$60,000",
+    "rows_after": 2426,
+    "why": "Remove placeholder/dealer-payment prices",
+    "rows_removed": 166
+  },
+  {
+    "step": "Reported clean title",
+    "rows_after": 2156,
+    "why": "Exclude salvage/rebuilt/lien titles from main comparison",
+    "rows_removed": 270
+  },
+  {
+    "step": "Deduplicate repeat listing IDs & valid VINs",
+    "rows_after": 1486,
+    "why": "Keep latest posting and highest listing ID; keep missing-VIN rows flagged",
+    "rows_removed": 670
+  }
+]

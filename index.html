@@ -3,211 +3,412 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>How fast does a used Ford lose its value?</title>
+<title>Beyond Ford: Exploring Affordable Used-Car Alternatives in the United States</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header class="masthead">
   <button class="btn theme-btn" id="theme-btn" aria-label="Switch between light and dark theme">Dark theme</button>
-  <h1>How fast does a used Ford lose its value?</h1>
+  <h1>Beyond Ford: Exploring Affordable Used-Car Alternatives in the United States</h1>
   <p class="lede">
-    <strong>17,715 used Fords</strong> from one listing snapshot give us a cross-section of the market: cars of every age, mileage and engine,
-    each with an asking price. We use them to ask what actually drives the price, how much comes from <strong>age</strong>
-    versus <strong>mileage</strong> versus the <strong>car itself</strong>, and where a simple model stops being trustworthy.
+    What are the alternatives to a used <strong>Ford Escape</strong> for a U.S. shopper on a budget?
+    Nine connected views compare <strong>five compact SUVs</strong> (2016–2019, up to 125,000 miles, clean title)
+    across budget fit, price spread, model years, odometer mileage, matched price gaps, U.S. Census regions,
+    reported condition, estimated fuel cost, and actual historical listings.
   </p>
+  <div class="trust-bar" id="trust-bar"></div>
+  <div class="preview-banner" id="preview-banner" hidden></div>
 </header>
 
-<div class="filterbar" id="filterbar" role="region" aria-label="Filters that apply to every view">
+<div class="filterbar" id="filterbar" role="region" aria-label="Shared filters and budget playback">
   <div class="filterbar-inner">
     <div class="fgroup">
-      <span class="flabel" id="models-label">Models to compare (up to 3)</span>
-      <div class="chips" id="model-chips" aria-labelledby="models-label"></div>
-      <select id="model-add" aria-label="Add a model"></select>
+      <label for="f-budget"><strong>Budget cap</strong></label>
+      <input type="range" id="f-budget" min="0" max="35000" step="500" value="15000" aria-label="Budget cap slider">
+      <input class="num" id="f-budget-num" type="number" min="0" max="60000" step="500" value="15000" aria-label="Budget cap in USD">
     </div>
-    <div class="fgroup"><label for="f-fuel">Fuel</label>
-      <select id="f-fuel"><option value="">All</option><option>Petrol</option><option>Diesel</option></select></div>
-    <div class="fgroup"><label for="f-trans">Gearbox</label>
-      <select id="f-trans"><option value="">All</option><option>Manual</option><option>Automatic</option><option>Semi-Auto</option></select></div>
-    <div class="fgroup"><span class="flabel">Age (years)</span>
-      <input class="num" id="f-age-min" type="number" min="0" max="12" step="1" aria-label="Minimum age">
+    <div class="fgroup" id="anim-controls">
+      <button class="btn" id="anim-back" title="Step budget back by $2,500">&minus;$2.5k</button>
+      <button class="btn primary" id="anim-play" aria-pressed="false" title="Animate budget from $10,000 to $20,000">Play $10k–$20k</button>
+      <button class="btn" id="anim-step" title="Step budget forward by $2,500">+$2.5k</button>
+    </div>
+    <div class="fgroup">
+      <span class="flabel">Models</span>
+      <div class="chips" id="model-chips"></div>
+    </div>
+    <div class="fgroup">
+      <label for="f-focus">Focus</label>
+      <select id="f-focus" aria-label="Focused SUV model"></select>
+    </div>
+    <div class="fgroup">
+      <span class="flabel">Years</span>
+      <input class="num num-yr" id="f-year-min" type="number" min="2016" max="2019" value="2016" aria-label="Minimum model year">
       <span class="flabel">to</span>
-      <input class="num" id="f-age-max" type="number" min="0" max="12" step="1" aria-label="Maximum age"></div>
+      <input class="num num-yr" id="f-year-max" type="number" min="2016" max="2019" value="2019" aria-label="Maximum model year">
+    </div>
+    <div class="fgroup">
+      <span class="flabel">Miles</span>
+      <input class="num" id="f-mile-min" type="number" min="0" max="125000" step="5000" value="0" aria-label="Minimum mileage">
+      <span class="flabel">to</span>
+      <input class="num" id="f-mile-max" type="number" min="0" max="125000" step="5000" value="125000" aria-label="Maximum mileage">
+    </div>
+    <div class="fgroup">
+      <label for="f-region">Region</label>
+      <select id="f-region" aria-label="U.S. Census region">
+        <option value="">All U.S.</option>
+        <option>Northeast</option>
+        <option>Midwest</option>
+        <option>South</option>
+        <option>West</option>
+      </select>
+    </div>
     <span class="spacer"></span>
     <span class="flabel" id="match-count" aria-live="polite"></span>
+    <button class="btn ai-btn" id="open-ai-btn">Explain + Best Case</button>
     <button class="btn" id="reset-all">Reset everything</button>
   </div>
+  <div class="filter-warn" id="filter-warn" hidden role="alert"></div>
 </div>
 
 <main>
 
-  <!-- ======================= BEGINNING: question and context ======================= -->
+  <!-- ======================= ACT 1: SET A BUDGET (VIEWS 1-3) ======================= -->
   <div class="act">
-    <h2>Beginning: what does a Ford lose as it ages?</h2>
-    <p>Press play and watch the median asking price fall as cars get older. Grey lines are every other model. The coloured lines
-      are the models you picked in the filter bar; they keep their colour in every view.</p>
+    <h2>Act 1: Set a budget — which compact SUVs fit?</h2>
+    <p>Start with a $15,000 asking-price cap across historical U.S. Craigslist listings (<span id="act1-dates">historical snapshot</span>)
+      and watch how changing the cap unlocks non-Ford alternatives, typical prices, and model-year bands.</p>
   </div>
 
+  <!-- VIEW 1 -->
   <section class="view" id="v1" aria-labelledby="v1-title">
-    <div class="view-head"><span class="view-num">View 1</span><h3 id="v1-title">The depreciation curve, drawn year by year</h3>
-      <p>How much of its price does a typical car of each model keep as it gets older?</p></div>
+    <div class="view-head">
+      <span class="view-num">View 1</span>
+      <h3 id="v1-title">Budget coverage</h3>
+      <p>Share of each model’s filtered listings at or below any budget cap (0–100%). Click a model tile or press Play ($10k–$20k) to see how many options open up.</p>
+    </div>
     <div class="card">
       <div class="toolbar">
-        <button class="btn primary" id="v1-play" aria-label="Play or pause the animation">Play</button>
-        <button class="btn" id="v1-back" aria-label="Back one year">&minus; 1 yr</button>
-        <button class="btn" id="v1-fwd" aria-label="Forward one year">+ 1 yr</button>
-        <div class="group"><label for="v1-scrub">Age shown</label><input type="range" id="v1-scrub" min="0" max="10" step="0.05" value="10"><output id="v1-age-out"></output></div>
-        <div class="group">Show
-          <div class="seg" role="group" aria-label="Value shown"><button id="v1-m-price" aria-pressed="true">Price (£)</button><button id="v1-m-pct" aria-pressed="false">% of year-1 price</button></div></div>
+        <div class="group" id="v1-status"></div>
+        <span class="spacer"></span>
+        <button class="btn ai-btn explain-trigger" data-view="v1">Explain this chart</button>
       </div>
       <div class="chart" id="v1-chart"></div>
       <div class="legend" id="v1-legend"></div>
       <div class="readouts" id="v1-tiles"></div>
-      <details class="table-view"><summary>Show the numbers as a table</summary><div class="tbl-scroll" id="v1-table"></div></details>
+      <div class="source-panel" id="v1-second-source"></div>
     </div>
     <div class="notes">
-      <div><h4>What it shows</h4><p>Median asking price of cars at each age. A model's line stops where fewer than 15 cars exist at an age, because a median of a handful of cars is noise.</p></div>
-      <div><h4>How it is built</h4><p>Cars are grouped by model and age (2020 minus model year). The median of each group is drawn with D3 as an SVG line. The cursor reveals the lines progressively.</p></div>
-      <div><h4>Why this form</h4><p>A line over age is the natural shape for change over time. Medians resist the few very expensive cars. The "% of year-1 price" toggle puts cheap and dear models on one comparable scale.</p></div>
+      <div><h4>What it shows</h4><p>Cumulative step lines show qualifying / total filtered listings for each compact SUV as the dollar cap rises.</p></div>
+      <div><h4>Second-source check</h4><p>Compares Craigslist (Reese v10) with CarGurus (Mital Sep 2020) under shared 2016–2019, ≤125,000 mi, $2k–$60k filters.</p></div>
+      <div><h4>Why this form</h4><p>Both counts and shares sit alongside the step lines so small groups never masquerade as large markets.</p></div>
     </div>
   </section>
 
-  <!-- ======================= MIDDLE: mechanism ======================= -->
-  <div class="act">
-    <h2>Middle: what is behind the curve?</h2>
-    <p>Age and mileage rise together (they correlate at 0.72 in this data), so the curve in View 1 mixes the two. Views 2 and 3 pull
-      them apart; Views 4 and 5 let you change one thing at a time.</p>
-  </div>
-
+  <!-- VIEW 2 -->
   <section class="view" id="v2" aria-labelledby="v2-title">
-    <div class="view-head"><span class="view-num">View 2</span><h3 id="v2-title">Every car in three dimensions</h3>
-      <p>Where do cars sit in age, mileage and price at once, and what does a simple age-and-mileage model draw through them?</p></div>
+    <div class="view-head">
+      <span class="view-num">View 2</span>
+      <h3 id="v2-title">Asking-price spread</h3>
+      <p>Typical (median) asking price (shape mark) and middle 50% of prices (bar) on a shared USD axis with the active budget cap. Click a model row to focus Views 4 and 6.</p>
+    </div>
     <div class="card">
       <div class="toolbar">
-        <div class="group">Colour by
-          <div class="seg" role="group" aria-label="Colour by"><button data-c="model">Model</button><button data-c="fuel">Fuel</button><button data-c="trans">Gearbox</button><button data-c="eng">Engine size</button></div></div>
-        <div class="group">View
-          <div class="seg" role="group" aria-label="Camera presets"><button data-p="3d">3D</button><button data-p="age">Age&ndash;price</button><button data-p="mile">Mileage&ndash;price</button><button data-p="top">Age&times;mileage</button></div></div>
-        <button class="btn" id="v2-rot" aria-pressed="false">Rotate</button>
-        <label class="group"><input type="checkbox" id="v2-surface"> Fitted surface (age + mileage only)</label>
+        <div class="group" id="v2-sub"></div>
+        <span class="spacer"></span>
+        <button class="btn ai-btn explain-trigger" data-view="v2">Explain this chart</button>
       </div>
       <div class="chart" id="v2-chart"></div>
-      <div class="legend" id="v2-legend"></div>
-      <p class="panel-sub" id="v2-foot" style="margin-top:8px"></p>
+      <details class="table-view"><summary>Show spread numbers as a table</summary><div class="tbl-scroll" id="v2-table"></div></details>
     </div>
     <div class="notes">
-      <div><h4>What it shows</h4><p>One dot per listing. Drag to rotate, scroll to zoom, hover to read a car's values, click a car to load it into Views 4 and 5.</p></div>
-      <div><h4>How it is built</h4><p>A hand-written 3D projection on an HTML canvas: rotation matrices, light perspective and a point-picking search. The surface is the age + mileage model from the prep step, drawn as a wireframe.</p></div>
-      <div><h4>Why 3D</h4><p>Three variables at once. The "Age&times;mileage" preset shows how tightly they travel together; the surface shows that the two alone leave a wide cloud of unexplained price.</p></div>
+      <div><h4>What it shows</h4><p>Where the middle half of asking prices sits for every model relative to your dashed budget marker.</p></div>
+      <div><h4>How it is built</h4><p>Computed from the uncapped filtered pool so raising or lowering the budget moves only the cap marker and in-budget counts.</p></div>
+      <div><h4>Why this form</h4><p>Medians resist high-price outlier trims while keeping listing counts (<em>n</em>) directly beside each brand.</p></div>
     </div>
   </section>
 
+  <!-- VIEW 3 -->
   <section class="view" id="v3" aria-labelledby="v3-title">
-    <div class="view-head"><span class="view-num">View 3</span><h3 id="v3-title">Comparing price distributions between scenarios</h3>
-      <p>Are two groups of cars really priced differently, or just differently spread?</p></div>
+    <div class="view-head">
+      <span class="view-num">View 3</span>
+      <h3 id="v3-title">Price by model year</h3>
+      <p>Median asking price across 2016–2019 model years. Gaps mark years with zero matching listings. Click a year point to isolate or restore that model year.</p>
+    </div>
     <div class="card">
       <div class="toolbar">
-        <div class="group">Compare
-          <div class="seg" role="group" aria-label="Group cars by"><button data-g="model">Models picked above</button><button data-g="fuel">Petrol vs diesel</button><button data-g="trans">Gearboxes</button></div></div>
+        <div class="group" id="v3-sub"></div>
+        <span class="spacer"></span>
+        <button class="btn ai-btn explain-trigger" data-view="v3">Explain this chart</button>
       </div>
       <div class="chart" id="v3-chart"></div>
       <div class="legend" id="v3-legend"></div>
-      <div class="tbl-scroll" id="v3-table"></div>
     </div>
     <div class="notes">
-      <div><h4>What it shows</h4><p>The share of cars at each price, one curve per group, for the cars that pass the filter bar. Hover to count cars near a price.</p></div>
-      <div><h4>How it is built</h4><p>A Gaussian kernel density with a fixed &pound;800 bandwidth, computed in the browser for each group, plus the median and quartiles of each group.</p></div>
-      <div><h4>Why this form</h4><p>Overlapping densities show spread and overlap that a pair of averages hides. A fixed bandwidth keeps groups comparable.</p></div>
+      <div><h4>What it shows</h4><p>Separate cars from different model years within the same historical Craigslist snapshot—not the same vehicle tracked over time.</p></div>
+      <div><h4>How it is built</h4><p>Each vertex is a median in USD with consistent model colors and distinct geometric shapes.</p></div>
+      <div><h4>Why this form</h4><p>Aligning model years against the horizontal budget line reveals which model years cross into budget.</p></div>
     </div>
   </section>
 
+  <!-- ======================= ACT 2: COMPARE SIMILAR CARS (VIEWS 4-6) ======================= -->
+  <div class="act">
+    <h2>Act 2: Compare similar cars — mileage, matched gaps, and regions</h2>
+    <p>Move from high-level medians down to individual odometer–price records, apples-to-apples year-and-mileage price gaps against the Ford Escape, and U.S. regional availability.</p>
+  </div>
+
+  <!-- VIEW 4 -->
   <section class="view" id="v4" aria-labelledby="v4-title">
-    <div class="view-head"><span class="view-num">View 4</span><h3 id="v4-title">Build a car and see what moves its price</h3>
-      <p>Change one thing at a time. Which features add value and which take it away, compared with a typical Fiesta?</p></div>
+    <div class="view-head">
+      <span class="view-num">View 4</span>
+      <h3 id="v4-title">Mileage versus asking price</h3>
+      <p>Every matching listing for the focused SUV (or all selected models). Click or press Enter on any dot to inspect that exact listing in View 9.</p>
+    </div>
     <div class="card">
-      <div class="whatif">
-        <div class="controls" id="v4-controls"></div>
+      <div class="toolbar">
+        <div class="group">Show
+          <div class="seg" role="group" aria-label="View 4 scope">
+            <button id="v4-scope-focus" aria-pressed="true">Focused model only</button>
+            <button id="v4-scope-all" aria-pressed="false">All selected models</button>
+          </div>
+        </div>
+        <span class="group" id="v4-sub"></span>
+        <span class="spacer"></span>
+        <button class="btn ai-btn explain-trigger" data-view="v4">Explain this chart</button>
+      </div>
+      <div class="chart" id="v4-chart"></div>
+      <div class="legend" id="v4-legend"></div>
+    </div>
+    <div class="notes">
+      <div><h4>What it shows</h4><p>Odometer mileage (horizontal) vs. asking price (vertical). Points at or below the dashed budget line light up; over-budget points are muted.</p></div>
+      <div><h4>How it adapts Project 1</h4><p>Replaces Project 1’s overlapping 3D cloud with a 2D plot linked directly to exact records in View 9.</p></div>
+      <div><h4>Trade-off visible</h4><p>Shows whether a cheaper asking price requires accepting higher odometer mileage (or an older year).</p></div>
+    </div>
+  </section>
+
+  <!-- VIEW 5 -->
+  <section class="view" id="v5" aria-labelledby="v5-title">
+    <div class="view-head">
+      <span class="view-num">View 5</span>
+      <h3 id="v5-title">Matched price gaps vs. Ford Escape</h3>
+      <p>Average price difference within identical model-year and 25,000-mile groups (negative means cheaper than Escape). Select a model to inspect its matching year &amp; mileage groups.</p>
+    </div>
+    <div class="card">
+      <div class="toolbar">
+        <div class="group">Min listings per side
+          <div class="seg" role="group" aria-label="Matched group minimum count">
+            <button class="v5-cut" data-n="10" aria-pressed="false">10</button>
+            <button class="v5-cut" data-n="15" aria-pressed="true">15 (default)</button>
+            <button class="v5-cut" data-n="20" aria-pressed="false">20</button>
+          </div>
+        </div>
+        <span class="group" id="v5-sub"></span>
+        <span class="spacer"></span>
+        <button class="btn ai-btn explain-trigger" data-view="v5">Explain this chart</button>
+      </div>
+      <div class="chart" id="v5-chart"></div>
+      <div class="strata-box" id="v5-strata" hidden></div>
+    </div>
+    <div class="notes">
+      <div><h4>What it shows</h4><p>Controls for model year and 25k-mile band so a low-mileage Escape isn’t compared unfairly to a high-mileage alternative.</p></div>
+      <div><h4>Sensitivity check</h4><p>Toggle 10, 15, or 20 minimum listings per matching group to confirm gaps are not artifacts of one cutoff.</p></div>
+      <div><h4>Connected drill-down</h4><p>Click any matching year &amp; mileage group inside the breakdown to highlight those exact cars in View 4 and filter View 9.</p></div>
+    </div>
+  </section>
+
+  <!-- VIEW 6 -->
+  <section class="view" id="v6" aria-labelledby="v6-title">
+    <div class="view-head">
+      <span class="view-num">View 6</span>
+      <h3 id="v6-title">Regional availability</h3>
+      <p>Share of listings for the focused SUV fitting the budget in each U.S. Census region, with exact qualifying / total counts. Click a bar to filter the entire story by region.</p>
+    </div>
+    <div class="card">
+      <div class="toolbar">
+        <div class="group" id="v6-sub"></div>
+        <span class="spacer"></span>
+        <button class="btn ai-btn explain-trigger" data-view="v6">Explain this chart</button>
+      </div>
+      <div class="chart" id="v6-chart"></div>
+    </div>
+    <div class="notes">
+      <div><h4>What it shows</h4><p>Regional budget availability across Northeast, Midwest, South, and West plus the combined national count-summed share.</p></div>
+      <div><h4>Math rule</h4><p>Combined totals sum regional qualifying and total counts first before dividing—never averaging percentages blindly.</p></div>
+      <div><h4>Why this matters</h4><p>Used compact SUV pricing varies by climate and market supply across U.S. regions.</p></div>
+    </div>
+  </section>
+
+  <!-- ======================= ACT 3: EVIDENCE & TRADE-OFFS (VIEWS 7-9) ======================= -->
+  <div class="act">
+    <h2>Act 3: Check condition, fuel costs, and the actual listings</h2>
+    <p>Inspect seller-reported condition mix, test hypothetical annual fuel spending, and verify every pattern in the individual historical listings.</p>
+  </div>
+
+  <!-- VIEW 7 -->
+  <section class="view" id="v7" aria-labelledby="v7-title">
+    <div class="view-head">
+      <span class="view-num">View 7</span>
+      <h3 id="v7-title">Listed condition mix</h3>
+      <p>Percentage of in-budget listings by seller-reported condition, keeping omitted entries explicitly labeled as Unknown. Click a bar to filter View 9.</p>
+    </div>
+    <div class="card">
+      <div class="toolbar">
+        <div class="group">Scope
+          <div class="seg" role="group" aria-label="Condition chart scope">
+            <button id="v7-scope-focus" aria-pressed="true">Focused model</button>
+            <button id="v7-scope-all" aria-pressed="false">All selected in-budget</button>
+          </div>
+        </div>
+        <span class="group" id="v7-sub"></span>
+        <span class="spacer"></span>
+        <button class="btn ai-btn explain-trigger" data-view="v7">Explain this chart</button>
+      </div>
+      <div class="chart" id="v7-chart"></div>
+    </div>
+    <div class="notes">
+      <div><h4>What it shows</h4><p>How seller-reported condition breaks down among listings that actually fit your budget.</p></div>
+      <div><h4>Honest missingness</h4><p><span id="v7-missing-count">Omitted condition entries</span> omit condition on Craigslist and are explicitly kept as <em>Unknown</em> rather than dropped or guessed.</p></div>
+      <div><h4>Link to evidence</h4><p>Select any condition bar (such as <em>Good</em> or <em>Unknown</em>) to inspect those exact listings in View 9.</p></div>
+    </div>
+  </section>
+
+  <!-- VIEW 8 -->
+  <section class="view" id="v8" aria-labelledby="v8-title">
+    <div class="view-head">
+      <span class="view-num">View 8</span>
+      <h3 id="v8-title">Fuel-cost scenario</h3>
+      <p>Hypothetical annual fuel spend: <code>(miles/yr ÷ MPG) × $/gal</code> across 20, 25, 30 MPG benchmarks and your selected vehicle’s EPA reference MPG. Fuel only.</p>
+    </div>
+    <div class="card">
+      <div class="toolbar">
+        <span class="group" id="v8-car-banner"></span>
+        <span class="spacer"></span>
+        <button class="btn ai-btn explain-trigger" data-view="v8">Explain this chart</button>
+      </div>
+      <div class="fuel-grid">
+        <div class="controls" id="v8-controls">
+          <div class="ctl">
+            <label for="v8-miles">Annual miles (0–30,000)</label>
+            <input class="num" id="v8-miles-num" type="number" min="0" max="30000" step="500" value="12000" aria-label="Annual miles per year">
+            <input type="range" id="v8-miles" min="0" max="30000" step="500" value="12000">
+          </div>
+          <div class="ctl">
+            <label for="v8-price">Fuel price ($0–$10/gal)</label>
+            <input class="num" id="v8-price-num" type="number" min="0" max="10" step="0.10" value="3.50" aria-label="Fuel price in dollars per gallon">
+            <input type="range" id="v8-price" min="0" max="10" step="0.10" value="3.50">
+          </div>
+          <div class="ctl">
+            <label for="v8-mpg">Selected / Custom MPG (5–100)</label>
+            <input class="num" id="v8-mpg-num" type="number" min="5" max="100" step="0.5" value="25" aria-label="Vehicle MPG">
+            <input type="range" id="v8-mpg" min="5" max="100" step="0.5" value="25">
+          </div>
+          <div class="filter-warn" id="v8-warn" style="padding:0" hidden role="alert"></div>
+          <button class="btn" id="v8-reset-defaults">Reset scenario ($3.50, 12k mi)</button>
+        </div>
         <div>
-          <div class="hero"><span class="big" id="v4-price">&nbsp;</span><span class="band" id="v4-band"></span></div>
-          <div class="evidence" id="v4-evidence"></div>
-          <div class="chart" id="v4-chart"></div>
+          <div class="chart" id="v8-chart"></div>
+          <p class="panel-sub" id="v8-note" style="margin-top:8px"></p>
         </div>
       </div>
     </div>
     <div class="notes">
-      <div><h4>What it shows</h4><p>The model's price estimate for the car you build, and a bar per feature: by what percentage that feature moves the price relative to the typical Fiesta.</p></div>
-      <div><h4>How it is built</h4><p>A regression of ln(price) on age, mileage, engine, mpg, tax, gearbox, fuel and model. Each bar is exp(coefficient &times; change): a multiplier, so bars do not depend on order.</p></div>
-      <div><h4>Honest limits</h4><p>The band is where 80% of training errors fell. "Similar cars" counts real listings near your settings; if there are none, the estimate is extrapolation and is flagged.</p></div>
+      <div><h4>What it shows</h4><p>Bars anchored at $0 show how annual driving and fuel economy change yearly fuel bills (e.g., 12,000 mi/yr at 25 MPG and $3.50/gal = $1,680/yr).</p></div>
+      <div><h4>Assumptions labeled</h4><p>Because Craigslist lacks exact drivetrain/trim on every row, benchmark bars use labeled 20/25/30 MPG assumptions and FuelEconomy.gov model defaults.</p></div>
+      <div><h4>Scope limit</h4><p>Estimate covers fuel cost only; insurance, repairs, financing, and taxes are excluded.</p></div>
     </div>
   </section>
 
-  <section class="view" id="v5" aria-labelledby="v5-title">
-    <div class="view-head"><span class="view-num">View 5</span><h3 id="v5-title">Slide the car along age and mileage</h3>
-      <p>Holding everything else fixed, how much does one more year, or 10,000 more miles, cost?</p></div>
-    <div class="card">
-      <div class="two-up">
-        <div><p class="panel-title" id="v5-a-title"></p><p class="panel-sub" id="v5-a-sub"></p><div class="chart" id="v5-a"></div></div>
-        <div><p class="panel-title" id="v5-b-title"></p><p class="panel-sub" id="v5-b-sub"></p><div class="chart" id="v5-b"></div></div>
-      </div>
-      <div class="legend"><span><i style="border-color:var(--s1)"></i>Model estimate for the car from View 4</span>
-        <span><i class="dot" style="background:var(--s1);opacity:.18"></i>80% band of past errors</span>
-        <span><i class="dot" style="background:var(--ink-3);opacity:.5"></i>Real cars of the same model and fuel (sample)</span></div>
+  <!-- VIEW 9 -->
+  <section class="view" id="v9" aria-labelledby="v9-title">
+    <div class="view-head">
+      <span class="view-num">View 9</span>
+      <h3 id="v9-title">Historical listing shortlist</h3>
+      <p>Exact historical listings behind the charts (public row keys replacing raw IDs/VINs). Sort columns or click any row to highlight that exact car in View 4 and estimate its yearly fuel cost in View 8.</p>
     </div>
-    <div class="notes">
-      <div><h4>What it shows</h4><p>The same car, re-priced as one variable sweeps across its range. The dot is the car you built in View 4 (or clicked in View 2 or 6).</p></div>
-      <div><h4>How it is built</h4><p>The model is evaluated 60 times along each axis with the other variables held at the car's values. Grey dots are a deterministic sample of real cars of that model and fuel.</p></div>
-      <div><h4>Read with care</h4><p>Real cars vary in engine and economy too, so the dots are a looser cloud than the line. Where there are no dots, the line is extrapolating.</p></div>
-    </div>
-  </section>
-
-  <!-- ======================= ENDING: evidence, insights, limitations ======================= -->
-  <div class="act">
-    <h2>Ending: how much can we trust it?</h2>
-    <p>A model is evidence only if it is judged on cars it has not seen. 20% of the cars were held back, and every number below uses them.</p>
-  </div>
-
-  <section class="view" id="v6" aria-labelledby="v6-title">
-    <div class="view-head"><span class="view-num">View 6</span><h3 id="v6-title">Adding information, one step at a time</h3>
-      <p>Each step adds a feature to the model. Does the predicted price move closer to the real price, and where does it still miss?</p></div>
     <div class="card">
       <div class="toolbar">
-        <button class="btn primary" id="v6-play">Play steps</button>
-        <button class="btn" id="v6-back" aria-label="Previous step">&minus; step</button>
-        <button class="btn" id="v6-fwd" aria-label="Next step">+ step</button>
-        <div class="group"><label for="v6-scrub">Step</label><input type="range" id="v6-scrub" min="0" max="6" step="1" value="6"><output id="v6-step-out"></output></div>
-        <div class="group">Cars
-          <div class="seg" role="group" aria-label="Cars shown"><button data-s="test">Held-out only</button><button data-s="all">All cars</button></div></div>
+        <div class="group">Show
+          <div class="seg" role="group" aria-label="Shortlist budget scope">
+            <button id="v9-only-in" aria-pressed="true">In-budget only</button>
+            <button id="v9-include-over" aria-pressed="false">All filtered (mark over-budget)</button>
+          </div>
+        </div>
+        <span class="group" id="v9-status"></span>
+        <button class="btn" id="v9-clear-subfilters" hidden>Clear condition/stratum filter</button>
+        <span class="spacer"></span>
+        <button class="btn ai-btn explain-trigger" data-view="v9">Explain this chart</button>
       </div>
-      <div class="readouts" id="v6-tiles" style="margin:0 0 12px"></div>
-      <div class="three-up">
-        <div><p class="panel-title">Predicted vs actual price</p><p class="panel-sub">Closer to the diagonal is better.</p><div class="chart" id="v6-scatter"></div></div>
-        <div><p class="panel-title">Typical error by step</p><p class="panel-sub">Held-out RMSE, &pound;. Click a bar to jump there.</p><div class="chart" id="v6-steps"></div></div>
-        <div><p class="panel-title">Where it misses most</p><p class="panel-sub" id="v6-miss-sub"></p><div class="chart" id="v6-miss"></div></div>
-      </div>
-      <details class="table-view"><summary>Show the numbers as a table</summary><div class="tbl-scroll" id="v6-table"></div></details>
+      <div class="tbl-scroll" id="v9-table"></div>
     </div>
     <div class="notes">
-      <div><h4>What it shows</h4><p>The same cars, scored by seven nested models. Step 0 guesses one price for every car; step 6 knows the age, mileage, engine, economy, tax, gearbox, fuel and model.</p></div>
-      <div><h4>How it is built</h4><p>Seven least-squares fits of ln(price) on the training 80% (Python, <code>prep/prepare_data.py</code>). The browser applies the saved coefficients to every row and scores any subset you filter.</p></div>
-      <div><h4>Why this form</h4><p>Predicted-vs-actual on held-out cars is the honest test. Bars give the size of the error; the ranked bars show which models are hardest to price.</p></div>
+      <div><h4>What it shows</h4><p>Exact asking price (USD), model year, odometer miles, state, Census region, posting date, and seller-reported condition.</p></div>
+      <div><h4>Privacy &amp; deduplication</h4><p>Original Craigslist listing IDs and VINs were stripped after deduplication and replaced by public row keys (<code>CL-xxxx</code>).</p></div>
+      <div><h4>Bi-directional linking</h4><p>Selecting any row highlights its dot in View 4 and populates View 8’s fuel scenario.</p></div>
     </div>
   </section>
 
+  <!-- ======================= GEMINI AI EXPLAINER + BEST-CASE SCENARIO ======================= -->
+  <section class="explainer-wrap" id="ai-explainer" aria-labelledby="ai-title">
+    <div class="view-head">
+      <span class="view-num">AI + Local</span>
+      <h3 id="ai-title">Gemini AI Chart Explainer &amp; Best-Case Scenario</h3>
+      <p>Ask what the current chart is saying or request the best-case affordable scenario. Every Gemini response is checked against the live verified chart numbers—if Gemini is unavailable or disagrees with the chart, a verified local caption takes over automatically.</p>
+    </div>
+    <div class="explainer-card">
+      <div class="explainer-head">
+        <div class="group">
+          <strong id="ai-context-label">Current context: View 1 · $15,000 cap</strong>
+          <span class="badge-tag" id="ai-mode-badge">Checking server…</span>
+        </div>
+        <div class="group">
+          <button class="btn" id="ai-refresh-btn">Refresh summary</button>
+        </div>
+      </div>
+      <div class="explainer-prompts">
+        <button class="btn ai-prompt" data-q="Explain what this chart is saying to a first-time shopper and what changed with the current filters.">What is this chart saying?</button>
+        <button class="btn ai-prompt" data-q="What is the best-case scenario for a non-Ford alternative based on the current chart numbers, and what is the trade-off?">Best-case scenario from chart</button>
+        <button class="btn ai-prompt" data-q="Why did the number of qualifying options change and which model gained the most?">Why did options change?</button>
+      </div>
+      <form class="explainer-form" id="ai-form">
+        <label class="sr-only" for="ai-input">Ask a question about the current view</label>
+        <input type="text" id="ai-input" placeholder="Ask about the current chart (e.g., What is my best-case non-Ford option under $15,000?)">
+        <button class="btn primary" type="submit">Ask Explainer</button>
+      </form>
+      <div class="explainer-grid">
+        <div class="explainer-panel">
+          <h4 id="ai-out-headline">What the chart says</h4>
+          <p id="ai-out-what"></p>
+          <p id="ai-out-tradeoff" style="color:var(--ink-2); margin-bottom:0;"></p>
+          <ul class="explainer-facts" id="ai-out-facts"></ul>
+        </div>
+        <div class="explainer-panel explainer-best">
+          <h4>Best-case scenario based on current chart</h4>
+          <p id="ai-out-best"></p>
+          <p id="ai-out-caveat" style="font-size:12.5px; color:var(--ink-2); margin-bottom:0;"></p>
+        </div>
+      </div>
+      <div class="explainer-meta" id="ai-meta"></div>
+    </div>
+  </section>
+
+  <!-- ======================= INSIGHTS, LIMITS, METHOD & REFERENCES ======================= -->
   <div class="act"><h2>What the evidence says</h2></div>
   <div class="insights" id="insights"></div>
-  <h3 style="margin:26px 0 6px;font-size:18px">What this analysis cannot tell you</h3>
+
+  <h3 style="margin:26px 0 6px; font-size:18px;">What this analysis cannot tell you</h3>
   <ul class="limits" id="limits"></ul>
 
-  <div class="act"><h2>How the data became these views</h2>
-    <p>Source, cleaning, model and verification, with the code that produced them.</p></div>
+  <div class="act">
+    <h2>How the data became these views</h2>
+    <p>Sources, cleaning funnel, sample records, independent verification checks, and citations.</p>
+  </div>
   <div class="method" id="method"></div>
 
 </main>
 
 <footer>
-  <p><strong>Data:</strong> <a href="https://www.kaggle.com/datasets/adhurimquku/ford-car-price-prediction">Ford Car Price Prediction</a> (ford.csv, Kaggle, uploaded by adhurimquku).
-  The file does not state a currency or listing date; prices are shown in &pound; (UK-style road-tax bands) and age is measured from 2020, the newest model year in the file.</p>
-  <p><strong>Built with:</strong> D3 v7 and plain JavaScript for the app, Python (pandas, NumPy) for preparation and verification. AI assistance (Claude) was used to write code; all numbers were checked by <code>tests/verify.py</code>.</p>
+  <p><strong>Beyond Ford</strong> — Danny Munoz, Karina Ponze, Bobbi Perry, and Braulio Encarnacion · Kean University CPS 5745.</p>
+  <p><strong>Built with:</strong> D3 v7.9.0 and plain JavaScript for interactive views; Python (pandas, NumPy) for data preparation and verification; optional Flask + Google Gemini Structured Outputs server for public chart explanations.</p>
 </footer>
 
 <div id="tip" role="tooltip"></div>
@@ -217,12 +418,16 @@
 <script src="d3.min.js"></script>
 <script src="core.js"></script>
 <script src="ui.js"></script>
-<script src="v1_timeline.js"></script>
-<script src="v2_scatter3d.js"></script>
-<script src="v3_distributions.js"></script>
-<script src="v4_whatif.js"></script>
-<script src="v5_partial.js"></script>
-<script src="v6_evidence.js"></script>
+<script src="v1_budget.js"></script>
+<script src="v2_spread.js"></script>
+<script src="v3_year.js"></script>
+<script src="v4_mileage.js"></script>
+<script src="v5_gaps.js"></script>
+<script src="v6_regions.js"></script>
+<script src="v7_condition.js"></script>
+<script src="v8_fuel.js"></script>
+<script src="v9_shortlist.js"></script>
+<script src="explainer.js"></script>
 <script src="main.js"></script>
 </body>
 </html>

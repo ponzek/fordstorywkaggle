@@ -1,0 +1,380 @@
+{
+  "available": true,
+  "isPreview": false,
+  "name": "CarGurus (Mital)",
+  "dateLabel": "2017-03-31 to 2020-09-13",
+  "hasTitleFilter": false,
+  "note": "Filtered to the same 5 compact SUVs (excl. Rogue Sport/Hybrid/EV), 2016\u20132019, <=125,000 mi, $2k\u2013$60k, used only, VIN-deduplicated. CarGurus lacks Craigslist's title_status field, so compare with the no-clean-title Craigslist benchmark below.",
+  "models": [
+    {
+      "model": "Ford Escape",
+      "total": 19153,
+      "qualify15k": 2853,
+      "share15k": 14.9,
+      "medianPrice": 17990,
+      "curve": [
+        {
+          "budget": 5000,
+          "qualify": 0,
+          "total": 19153
+        },
+        {
+          "budget": 7500,
+          "qualify": 5,
+          "total": 19153
+        },
+        {
+          "budget": 10000,
+          "qualify": 47,
+          "total": 19153
+        },
+        {
+          "budget": 12500,
+          "qualify": 513,
+          "total": 19153
+        },
+        {
+          "budget": 15000,
+          "qualify": 2853,
+          "total": 19153
+        },
+        {
+          "budget": 17500,
+          "qualify": 8411,
+          "total": 19153
+        },
+        {
+          "budget": 20000,
+          "qualify": 15096,
+          "total": 19153
+        },
+        {
+          "budget": 22500,
+          "qualify": 17682,
+          "total": 19153
+        },
+        {
+          "budget": 25000,
+          "qualify": 18734,
+          "total": 19153
+        },
+        {
+          "budget": 27500,
+          "qualify": 19054,
+          "total": 19153
+        },
+        {
+          "budget": 30000,
+          "qualify": 19146,
+          "total": 19153
+        },
+        {
+          "budget": 32500,
+          "qualify": 19150,
+          "total": 19153
+        },
+        {
+          "budget": 35000,
+          "qualify": 19152,
+          "total": 19153
+        }
+      ]
+    },
+    {
+      "model": "Chevrolet Equinox",
+      "total": 18593,
+      "qualify15k": 1487,
+      "share15k": 8.0,
+      "medianPrice": 19134,
+      "curve": [
+        {
+          "budget": 5000,
+          "qualify": 0,
+          "total": 18593
+        },
+        {
+          "budget": 7500,
+          "qualify": 0,
+          "total": 18593
+        },
+        {
+          "budget": 10000,
+          "qualify": 20,
+          "total": 18593
+        },
+        {
+          "budget": 12500,
+          "qualify": 228,
+          "total": 18593
+        },
+        {
+          "budget": 15000,
+          "qualify": 1487,
+          "total": 18593
+        },
+        {
+          "budget": 17500,
+          "qualify": 4890,
+          "total": 18593
+        },
+        {
+          "budget": 20000,
+          "qualify": 12180,
+          "total": 18593
+        },
+        {
+          "budget": 22500,
+          "qualify": 16280,
+          "total": 18593
+        },
+        {
+          "budget": 25000,
+          "qualify": 18141,
+          "total": 18593
+        },
+        {
+          "budget": 27500,
+          "qualify": 18502,
+          "total": 18593
+        },
+        {
+          "budget": 30000,
+          "qualify": 18577,
+          "total": 18593
+        },
+        {
+          "budget": 32500,
+          "qualify": 18583,
+          "total": 18593
+        },
+        {
+          "budget": 35000,
+          "qualify": 18588,
+          "total": 18593
+        }
+      ]
+    },
+    {
+      "model": "Honda CR-V",
+      "total": 9942,
+      "qualify15k": 137,
+      "share15k": 1.4,
+      "medianPrice": 23881,
+      "curve": [
+        {
+          "budget": 5000,
+          "qualify": 0,
+          "total": 9942
+        },
+        {
+          "budget": 7500,
+          "qualify": 1,
+          "total": 9942
+        },
+        {
+          "budget": 10000,
+          "qualify": 1,
+          "total": 9942
+        },
+        {
+          "budget": 12500,
+          "qualify": 5,
+          "total": 9942
+        },
+        {
+          "budget": 15000,
+          "qualify": 137,
+          "total": 9942
+        },
+        {
+          "budget": 17500,
+          "qualify": 608,
+          "total": 9942
+        },
+        {
+          "budget": 20000,
+          "qualify": 1994,
+          "total": 9942
+        },
+        {
+          "budget": 22500,
+          "qualify": 3775,
+          "total": 9942
+        },
+        {
+          "budget": 25000,
+          "qualify": 6592,
+          "total": 9942
+        },
+        {
+          "budget": 27500,
+          "qualify": 8598,
+          "total": 9942
+        },
+        {
+          "budget": 30000,
+          "qualify": 9750,
+          "total": 9942
+        },
+        {
+          "budget": 32500,
+          "qualify": 9919,
+          "total": 9942
+        },
+        {
+          "budget": 35000,
+          "qualify": 9940,
+          "total": 9942
+        }
+      ]
+    },
+    {
+      "model": "Toyota RAV4",
+      "total": 12277,
+      "qualify15k": 113,
+      "share15k": 0.9,
+      "medianPrice": 22400,
+      "curve": [
+        {
+          "budget": 5000,
+          "qualify": 0,
+          "total": 12277
+        },
+        {
+          "budget": 7500,
+          "qualify": 0,
+          "total": 12277
+        },
+        {
+          "budget": 10000,
+          "qualify": 0,
+          "total": 12277
+        },
+        {
+          "budget": 12500,
+          "qualify": 1,
+          "total": 12277
+        },
+        {
+          "budget": 15000,
+          "qualify": 113,
+          "total": 12277
+        },
+        {
+          "budget": 17500,
+          "qualify": 594,
+          "total": 12277
+        },
+        {
+          "budget": 20000,
+          "qualify": 2772,
+          "total": 12277
+        },
+        {
+          "budget": 22500,
+          "qualify": 6378,
+          "total": 12277
+        },
+        {
+          "budget": 25000,
+          "qualify": 9871,
+          "total": 12277
+        },
+        {
+          "budget": 27500,
+          "qualify": 11246,
+          "total": 12277
+        },
+        {
+          "budget": 30000,
+          "qualify": 11915,
+          "total": 12277
+        },
+        {
+          "budget": 32500,
+          "qualify": 12100,
+          "total": 12277
+        },
+        {
+          "budget": 35000,
+          "qualify": 12250,
+          "total": 12277
+        }
+      ]
+    },
+    {
+      "model": "Nissan Rogue",
+      "total": 19518,
+      "qualify15k": 1851,
+      "share15k": 9.5,
+      "medianPrice": 18696,
+      "curve": [
+        {
+          "budget": 5000,
+          "qualify": 0,
+          "total": 19518
+        },
+        {
+          "budget": 7500,
+          "qualify": 0,
+          "total": 19518
+        },
+        {
+          "budget": 10000,
+          "qualify": 21,
+          "total": 19518
+        },
+        {
+          "budget": 12500,
+          "qualify": 257,
+          "total": 19518
+        },
+        {
+          "budget": 15000,
+          "qualify": 1851,
+          "total": 19518
+        },
+        {
+          "budget": 17500,
+          "qualify": 6372,
+          "total": 19518
+        },
+        {
+          "budget": 20000,
+          "qualify": 14466,
+          "total": 19518
+        },
+        {
+          "budget": 22500,
+          "qualify": 17823,
+          "total": 19518
+        },
+        {
+          "budget": 25000,
+          "qualify": 19248,
+          "total": 19518
+        },
+        {
+          "budget": 27500,
+          "qualify": 19451,
+          "total": 19518
+        },
+        {
+          "budget": 30000,
+          "qualify": 19509,
+          "total": 19518
+        },
+        {
+          "budget": 32500,
+          "qualify": 19512,
+          "total": 19518
+        },
+        {
+          "budget": 35000,
+          "qualify": 19516,
+          "total": 19518
+        }
+      ]
+    }
+  ]
+}
